@@ -1,7 +1,10 @@
 package eu.senla.javacources.entitiy;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class Port {
 
     private int capacity; //сколько воды сейчас в порту

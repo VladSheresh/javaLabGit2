@@ -1,20 +1,28 @@
 package eu.senla.javacources.menu;
 
-import java.util.List;
-import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
 
-// Содержит текущий пункт меню
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
 public class Menu {
 
-    public List<MenuItem> items;
+    private List<MenuItem> menuItems = new ArrayList<>();
+    private String name;
 
-    public void executeUserComand() {
-        Scanner scanner = null;
-        int num = scanner.nextInt();
-
-        MenuItem item = items.get(num-1);
-        item.action.doAction();
+    public Menu(String name) {
+        this.name = name;
     }
 
+    public Menu(List<MenuItem> menuItems) {
+        this.menuItems = menuItems;
+    }
 
+    public Menu(String name, List<MenuItem> menuItems) {
+        this.name = name;
+        this.menuItems = menuItems;
+    }
 }

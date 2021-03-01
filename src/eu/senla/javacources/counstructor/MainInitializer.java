@@ -2,6 +2,7 @@ package eu.senla.javacources.counstructor;
 
 import eu.senla.javacources.entitiy.Port;
 import eu.senla.javacources.entitiy.Ship;
+import eu.senla.javacources.menu.MenuController;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class MainInitializer {
     }
 
     private static void initMenu() {
-
+        MenuController.getInstance().run();
     }
 
     private static void generateWaitingShip() {
