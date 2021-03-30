@@ -1,17 +1,15 @@
 package eu.senla.javacources.menu;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 
 public class Navigator {
 
-    @Getter @Setter
-    private Menu currentMenu;
+
+    private Menu currentMenu;// текущее меню
 
     private static Navigator instance;
 
-    private Navigator() {}
+    private Navigator() {
+    }
 
     public static Navigator getInstance() {
         if (instance == null) {
@@ -30,21 +28,27 @@ public class Navigator {
         --index;
 
         int itemsCounter = currentMenu.getMenuItems().size();
-        if (itemsCounter < index && itemsCounter < 0) {
+        if (itemsCounter >= index && index < 0) {// условие  коректно
             System.out.println("we have a problem Huston");
             return;
         }
 
         MenuItem menuChoice = currentMenu.getMenuItems().get(index);
 
-        if (menuChoice.getAction() == null) {
-            if (menuChoice.getNextMenu() == null) {
-                this.setCurrentMenu(getCurrentMenu().getMenuItems().get(index).getPreviousMenu());
-            } else {
-                this.setCurrentMenu(getCurrentMenu().getMenuItems().get(index).getNextMenu());
-            }
-        } else {
+        if (menuChoice.getAction() != null) {
             menuChoice.executeAction();
         }
+        if(menuChoice.getNextMenu() != null){
+            this.setCurrentMenu(menuChoice.getNextMenu());
+        }
+
+    }
+
+    public Menu getCurrentMenu() {
+        return currentMenu;
+    }
+
+    public void setCurrentMenu(Menu currentMenu) {
+        this.currentMenu = currentMenu;
     }
 }
